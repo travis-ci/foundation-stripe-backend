@@ -1,5 +1,6 @@
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
+const port = process.env.PORT || 8000;
 
 const express = require("express");
 const cors = require("cors");
@@ -41,4 +42,4 @@ app.get("/", (req, res) => {
   res.send("Hello, yes, this is working");
 });
 
-app.listen(8000);
+app.listen(port);
