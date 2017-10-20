@@ -7,7 +7,7 @@ const stripe = require("stripe")(keySecret);
 const bodyParser = require("body-parser");
 
 var corsOptions = {
-  origin: "http://localhost:4000"
+  origin: "https://foundation.travi-ci.com"
 }
 
 const app = express();
