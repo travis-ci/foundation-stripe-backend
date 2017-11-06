@@ -1,6 +1,7 @@
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 const port = process.env.PORT || 8000;
+const origin = process.env.REQUEST_ORIGIN;
 
 const express = require("express");
 const cors = require("cors");
@@ -8,7 +9,7 @@ const stripe = require("stripe")(keySecret);
 const bodyParser = require("body-parser");
 
 var corsOptions = {
-  origin: "https://foundation.travi-ci.com"
+  origin: origin
 }
 
 const app = express();
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.post("/charge", (req, res) => {
-  let amount = req.body.amount;
+  let amount = parseInt(req.body.amount, 10);
 
   stripe.customers.create({
     email: req.body.token.email,
